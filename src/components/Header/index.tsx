@@ -1,6 +1,6 @@
 import { HeaderContainer, HeaderContent, NewTransactionButton } from "./styles"
 
-import logoImg from '../../assets/Ignite simbol.svg'
+import logoImg from '../../assets/Logo.svg'
 
 export function Header() {
   return(
