@@ -21,11 +21,11 @@ export function Transactions() {
               </PriceHighLight>
             </td>
             <td>Venda</td>
-            <td>13/04/2024</td>
+            <td>13/07/2024</td>
           </tr>
 
           <tr>
-            <td width="50%">Finicap</td>
+            <td width="50%">Finecap</td>
             <td>
               <PriceHighLight variant="outcome">
                 - R$ 500,00
@@ -33,6 +33,17 @@ export function Transactions() {
             </td>
             <td>Festa</td>
             <td>13/09/2024</td>
+          </tr>
+
+          <tr>
+            <td width="50%">Compra de roupas</td>
+            <td>
+              <PriceHighLight variant="outcome">
+                - R$ 1.500,00
+              </PriceHighLight>
+            </td>
+            <td>Festa</td>
+            <td>13/08/2024</td>
           </tr>
         </TransactionsTable>
       </TransactionsContainer>
