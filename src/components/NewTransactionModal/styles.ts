@@ -92,7 +92,7 @@ export const TransactionTypeButton = styled.button<TransactionTypeButtonProps>`
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  border-radius: 6px; 
+  border-radius: 6px;  
   cursor: pointer;
   border: 0;
   color: ${props => props.theme["gray-300"]};
