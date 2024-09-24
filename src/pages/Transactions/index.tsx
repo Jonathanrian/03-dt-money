@@ -1,50 +1,61 @@
+import { useEffect, useState } from "react";
 import { Header } from "../../components/Header";
 import { Summary } from "../../components/Summary";
 import { SearchForm } from "./components/SearchForm";
-import { PriceHighLight, TransactionsContainer, TransactionsTable } from "./styles";
+import {
+  PriceHighLight,
+  TransactionsContainer,
+  TransactionsTable,
+} from "./styles";
+
+interface Transaction {
+  id: number;
+  description: string;
+  type: "income" | "outcome";
+  category: string;
+  price: number;
+  createdAt: string;
+}
 
 export function Transactions() {
+  const [transactions, setTransactions] = useState<Transaction[]>([]);
+
+  async function loadTransactions() {
+    const response = await fetch("http://localhost:3000/transaction");
+    const data = await response.json();
+
+    setTransactions(data);
+  }
+
+  useEffect(() => {
+    loadTransactions();
+  }, []);
+
   return (
     <div>
       <Header />
       <Summary />
 
       <TransactionsContainer>
-        <SearchForm/>
+        <SearchForm />
 
-        <TransactionsTable >
-          <tr>
-            <td width="50%">Desenvolvimento de site</td>
-            <td>
-              <PriceHighLight variant="income">
-                R$ 12.000,00
-              </PriceHighLight>
-            </td>
-            <td>Venda</td>
-            <td>13/07/2024</td>
-          </tr>
-
-          <tr>
-            <td width="50%">Finecap</td>
-            <td>
-              <PriceHighLight variant="outcome">
-                - R$ 500,00
-              </PriceHighLight>
-            </td>
-            <td>Festa</td>
-            <td>13/09/2024</td>
-          </tr>
-
-          <tr>
-            <td width="50%">Compra de roupas</td>
-            <td>
-              <PriceHighLight variant="outcome">
-                - R$ 1.500,00
-              </PriceHighLight>
-            </td>
-            <td>Festa</td>
-            <td>13/08/2024</td>
-          </tr>
+        <TransactionsTable>
+          <tbody>
+            {transactions.map(transaction => {
+              return (
+                <tr>
+                  <td width="50%">{transaction.description}</td>
+                  <td>
+                    <PriceHighLight variant={transaction.type}>
+                      {transaction.price}
+                    </PriceHighLight>
+                  </td>
+                  <td>{transaction.category}</td>
+                  <td>{transaction.createdAt}</td>
+                </tr>
+              );
+            })}
+          </tbody>
         </TransactionsTable>
       </TransactionsContainer>
     </div>
